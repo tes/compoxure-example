@@ -1,10 +1,9 @@
 {
-  "name": "compoxure-example",
+  "name": "compoxure-example-proxy",
   "version": "0.0.1",
   "description": "Example of compoxure proxy",
   "scripts": {
-    "start": "nodemon proxy.js",
-    "demo": "nodemon demo.js"
+    "start": "node proxy.js"
   },
   "repository": {
     "type": "git",
