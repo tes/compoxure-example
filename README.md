@@ -1,4 +1,6 @@
-# Example Service for Compoxure: https://github.com/tes/compoxure
+# Example Service for Compoxure:
+
+Middleware project: https://github.com/tes/compoxure
 
 ```
 git clone git@github.com:tes/compoxure-example.git
