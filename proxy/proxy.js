@@ -45,9 +45,9 @@ conflab.load((err, config) => {
   const compoxureMiddleware = cx(config, eventHandler);
   app.use(compoxureMiddleware);
 
-  app.listen(config.server.port, config.server.host, function (err) {
+  app.listen(config.server.port, function (err) {
     if (err) console.log('Error starting service : %s on %s:%s', err.message, config.server.host, config.server.port);
-    console.log('Started proxy service on http://%s:%s', config.server.host, config.server.port);
+    console.log('Started proxy service on http://%s:%s', 'localhost', config.server.port);
   });
 });
 
