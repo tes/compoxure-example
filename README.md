@@ -1,4 +1,4 @@
-# Example Service for Compoxure
+# Example Service for Compoxure: https://github.com/tes/compoxure
 
 ```
 git clone git@github.com:tes/compoxure-example.git
@@ -17,19 +17,19 @@ Then visit:  http://localhost:7000
 
 ## Explanation of files
 
-`proxy.js`
+`proxy.js`: https://github.com/tes/compoxure-example/blob/master/proxy.js
 
 This is the key file that sets up a basic express server, loads configuration, and adds the compoxure middleware to express.  This is the file you will retain.
 
-`config`
+`config`: https://github.com/tes/compoxure-example/blob/master/config
 
 This is where you store the configuration.  At Tes we keep all of the backend configuration in `default.json`, and only the things that change by environment in the `environment.json`.  This assumes you use `NODE_ENV=production`, if you use a different env variable to indicate your environments conflab supports this (we use TES_ENV).
 
-`demo.js`
+`demo.js`: https://github.com/tes/compoxure-example/blob/master/demo.js
 
 This just starts the backend and proxy for you to play with.
 
-`backend.js`
+`backend.js`: https://github.com/tes/compoxure-example/blob/master/backend.js
 
 This serves a super simple backend application (contains a page that has `cx-` markup), and service endpoints (that serves some simple fragments).
 
