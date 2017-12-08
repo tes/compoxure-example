@@ -1,0 +1,13 @@
+{
+  "cdn":{
+    "url":"http://localhost:7000/cdn"
+  },
+  "parameters": {
+    "servers": {
+      "example-service": "http://localhost:7001"
+    }
+  },
+  "cache": {
+    "engine": "memorycache"
+  }
+}
