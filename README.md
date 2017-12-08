@@ -40,8 +40,24 @@ To productionise this, I'd do the following:
 1.  Clone the repo, rename it.
 2.  Delete `demo.js`, `backend.js` and `/static`.  These are purely to show it working.
 2.  Bolt in whatever you use to manage config, we use https://github.com/tes/conflab, as it supports simple convention based hierarchical config files.
-3.  Wire up your own logger and stats.
+3.  Wire up your own logger and stats into the proxy.js, including replacing the HTTP logger (morgan) if you use something else.
 4.  Add your server and backend configuration.
 5.  Profit!
 
 We don't have tests in this repo at Tes, as it contains only configuration and very little actual code.  If you have some complex functions or complex configuration you may make different choices!
+
+## Architecture Patterns
+
+In real world usage we have a few patterns that we use at Tes to keep ourselves sane.
+
+`app-*`: applications
+
+We define an application as a node service that returns HTML and provides a UI of some sort to a user.  e.g. the application that allows authors to upload teaching resources on tes.com.
+
+All of the backend configuration points to apps.  These apps respond with server rendered HTML that contains the `cx-` markup.
+
+`service-*`: services
+
+Fragments of content are rendered by services.  We define the service name and base url in the configuration block for servers, so that they can be re-used in the backend configuration by name, e.g. `{{service:profile}}`.  This means you can have the backend configuration in one place (e.g. in `default.json`), and then have the specific services themselves in each environment file.
+
+If you have a registry of services, you can also call that to get a list, and inject those into the config to save you duplicating config.
