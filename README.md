@@ -5,35 +5,33 @@ Middleware project: https://github.com/tes/compoxure
 ```
 git clone git@github.com:tes/compoxure-example.git
 cd compoxure-example
-nvm use
-npm i
 ```
 
 To run the demo:
 
 ```
-npm run demo
+docker-compose up
 ```
 
 Then visit:  http://localhost:7000
 
-## Explanation of files
+## Explanation
 
-`proxy.js`: https://github.com/tes/compoxure-example/blob/master/proxy.js
+`Proxy`: https://github.com/tes/compoxure-example/tree/master/proxy
 
-This is the key file that sets up a basic express server, loads configuration, and adds the compoxure middleware to express.  This is the file you will retain.
+This is the key folder with a Dockerfile that sets up a basic express server, loads configuration, and adds the compoxure middleware to express.  This is the service you will retain and will be key on the composition layer of your infrastructure.
 
-`config`: https://github.com/tes/compoxure-example/blob/master/config
+`Proxy config`: https://github.com/tes/compoxure-example/blob/master/proxy/config
 
-This is where you store the configuration.  At Tes we keep all of the backend configuration in `default.json`, and only the things that change by environment in the `environment.json`.  This assumes you use `NODE_ENV=production`, if you use a different env variable to indicate your environments conflab supports this (we use TES_ENV).
+This is where you store the proxy configuration.  At Tes we keep all of the backend configuration in `default.json`, and only the things that change by environment in the `environment.json`.  This assumes you use `NODE_ENV=production`, if you use a different env variable to indicate your environments conflab supports this (we use TES_ENV).
 
-`demo.js`: https://github.com/tes/compoxure-example/blob/master/demo.js
+`App`: https://github.com/tes/compoxure-example/tree/master/app
 
-This just starts the backend and proxy for you to play with.
+This folder contains a Dockerfile that sets up a super simple backend application (contains a page that has `cx-` markup). This is where your proxy will get its html from according to its rule, parse it and compose it from other services.
 
-`backend.js`: https://github.com/tes/compoxure-example/blob/master/backend.js
+`Service`: https://github.com/tes/compoxure-example/tree/master/service
 
-This serves a super simple backend application (contains a page that has `cx-` markup), and service endpoints (that serves some simple fragments).
+This folder contains a Dockerfile that sets up a simple service with endpoints (that serves some simple fragments). This service will be queried by the proxy server once it received the html from the app and parses the `cx-` markup
 
 ## Converting this into a real service to use
 

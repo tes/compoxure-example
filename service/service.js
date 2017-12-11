@@ -44,6 +44,6 @@ app.get('/login', function(req, res) {
   res.end('Login form ... <a href="/">back</a>');
 });
 
-app.listen(7001, 'localhost', function() {
-  console.log('Example backend server on http://localhost:7001');
+app.listen(7002, function() {
+  console.log('Example service server on http://localhost:7002');
 });

@@ -1,7 +1,6 @@
 {
   "server": {
-    "port": 7000,
-    "host": "localhost"
+    "port": 7000
   },
   "backend": [
     {
@@ -12,7 +11,7 @@
     {
       "pattern": ".*",
       "dontPassUrl": false,
-      "target":"{{server:example-service}}"
+      "target":"{{server:example-app}}"
     }
   ],
   "statusCodeHandlers": {
