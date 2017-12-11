@@ -37,8 +37,7 @@ This folder contains a Dockerfile that sets up a simple service with endpoints (
 
 To productionise this, I'd do the following:
 
-1.  Clone the repo, rename it.
-2.  Delete `demo.js`, `backend.js` and `/static`.  These are purely to show it working.
+1.  Clone the repo, move the `/proxy` directory out to be the base of a new application.
 2.  Bolt in whatever you use to manage config, we use https://github.com/tes/conflab, as it supports simple convention based hierarchical config files.
 3.  Wire up your own logger and stats into the proxy.js, including replacing the HTTP logger (morgan) if you use something else.
 4.  Add your server and backend configuration.
