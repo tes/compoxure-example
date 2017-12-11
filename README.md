@@ -27,7 +27,7 @@ This is where you store the proxy configuration.  At Tes we keep all of the back
 
 `App`: https://github.com/tes/compoxure-example/tree/master/app
 
-This folder contains a Dockerfile that sets up a super simple backend application (contains a page that has `cx-` markup). This is where your proxy will get its html from according to its rule, parse it and compose it from other services.  It only serves slots, note the addition of `cx-layout` headers to the response to allow Compoxure to know that this app expects it to use a template and where to get it, and the `cx-parse-me` that ensures compoxure knows that these pages contain `cx-` tags (required if using a layout).
+This folder contains a Dockerfile that sets up a super simple backend application (contains a page that has `cx-` markup). This is where your proxy will get its html from according to its rule, parse it and compose it from other services.  It only serves fragments of html with `cx-use-slot` directives, with the addition of `cx-layout` headers to the response to allow Compoxure to know that this app expects it to use a template and where to get it, and the `cx-parse-me` that ensures compoxure knows that these pages contain `cx-` tags (required if using a layout).
 
 `Service`: https://github.com/tes/compoxure-example/tree/master/service
 
@@ -35,7 +35,7 @@ This folder contains a Dockerfile that sets up a simple service with endpoints (
 
 `Layout`: https://github.com/tes/compoxure-example/tree/master/layout
 
-This folder contains a service that serves a shared layout, a HTML template that defines slots that content can be composed into. We use a layout to serve the main HTML structure for the site, and apps just push content into slots.  Note the
+This folder contains a service that serves a shared layout, a HTML template that defines slots (via `cx-define-slot`) that content can be composed into. We use a layout to serve the main HTML structure for the site, and apps just push content into slots.
 
 ## Converting this into a real service to use
 
