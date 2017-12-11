@@ -1,8 +1,6 @@
 const cx = require('compoxure');
 const Conflab = require('conflab');
 const express = require('express');
-const cookieParser = require('cookie-parser');
-const compression = require('compression');
 const morgan = require('morgan');
 
 /**
@@ -27,7 +25,6 @@ const functions = {
   'handleUnauthorised': function(req, res, variables, data, options, err) {
     // You could catch any 403 and redirect automatically
     // In this context data is the data section of the handler config
-    console.log('here', data);
     res.redirect(data.url);
   },
 }
@@ -36,8 +33,6 @@ const conflab = new Conflab();
 conflab.load((err, config) => {
   const app = express();
 
-  app.use(cookieParser());
-  app.use(compression());
   app.use(morgan('combined'));
   app.disable('x-powered-by');
 

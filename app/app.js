@@ -6,16 +6,25 @@
  */
 
 const express = require('express');
-const cookieParser = require('cookie-parser');
-const compression = require('compression');
 const morgan = require('morgan');
 const serveStatic = require('serve-static');
 
 const app = express();
-app.use(cookieParser());
-app.use(morgan('combined'));
 app.disable('x-powered-by');
 app.use(morgan('combined'));
+
+/**
+ * The application can let compoxure know that it uses a layout, and where to find it.
+ */
+app.use(function(req, res, next) {
+  res.set('cx-parse-me','true');
+  res.set('cx-layout','{{server:layout}}/layout.html');
+  return next();
+});
+
+/**
+ * Serve some static html, in the real world you would probably do something more complicated.
+ */
 app.use(serveStatic('static', {'index': ['index.html', 'index.htm']}));
 
 app.listen(7001, function() {

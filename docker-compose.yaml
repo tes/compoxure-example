@@ -13,8 +13,15 @@ services:
     ports:
      - '7002:7002'
 
+  local-layout:
+    build: ./layout/
+    command: node layout
+    ports:
+     - '7003:7003'
+
   compoxure-proxy:
     build: ./proxy/
     command: node proxy
     ports:
      - '7000:7000'
+

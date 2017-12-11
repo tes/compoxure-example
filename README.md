@@ -27,11 +27,15 @@ This is where you store the proxy configuration.  At Tes we keep all of the back
 
 `App`: https://github.com/tes/compoxure-example/tree/master/app
 
-This folder contains a Dockerfile that sets up a super simple backend application (contains a page that has `cx-` markup). This is where your proxy will get its html from according to its rule, parse it and compose it from other services.
+This folder contains a Dockerfile that sets up a super simple backend application (contains a page that has `cx-` markup). This is where your proxy will get its html from according to its rule, parse it and compose it from other services.  It only serves slots, note the addition of `cx-layout` headers to the response to allow Compoxure to know that this app expects it to use a template and where to get it, and the `cx-parse-me` that ensures compoxure knows that these pages contain `cx-` tags (required if using a layout).
 
 `Service`: https://github.com/tes/compoxure-example/tree/master/service
 
 This folder contains a Dockerfile that sets up a simple service with endpoints (that serves some simple fragments). This service will be queried by the proxy server once it received the html from the app and parses the `cx-` markup
+
+`Layout`: https://github.com/tes/compoxure-example/tree/master/layout
+
+This folder contains a service that serves a shared layout, a HTML template that defines slots that content can be composed into. We use a layout to serve the main HTML structure for the site, and apps just push content into slots.  Note the
 
 ## Converting this into a real service to use
 
@@ -41,6 +45,7 @@ To productionise this, I'd do the following:
 2.  Bolt in whatever you use to manage config, we use https://github.com/tes/conflab, as it supports simple convention based hierarchical config files.
 3.  Wire up your own logger and stats into the proxy.js, including replacing the HTTP logger (morgan) if you use something else.
 4.  Add your server and backend configuration.
+5.  Create a layout service, and add that configuration (if you want to use layouts and slots).
 5.  Profit!
 
 We don't have tests in this repo at Tes, as it contains only configuration and very little actual code.  If you have some complex functions or complex configuration you may make different choices!

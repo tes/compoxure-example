@@ -6,14 +6,10 @@
  */
 
 const express = require('express');
-const cookieParser = require('cookie-parser');
-const compression = require('compression');
 const morgan = require('morgan');
 const serveStatic = require('serve-static');
 
 const app = express();
-app.use(cookieParser());
-app.use(morgan('combined'));
 app.disable('x-powered-by');
 app.use(morgan('combined'));
 app.use(serveStatic('static', {'index': ['index.html', 'index.htm']}));
